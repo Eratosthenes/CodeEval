@@ -1,11 +1,8 @@
-$h=Hash[[*0..26].zip([""]+[*?A..?Z])]
-$pairs = [*0..26].repeated_permutation(3).to_a
-def column_name(n)
-  res=[];$pairs.each do |pair|
-    res<<pair.map{|x| $h[x]}.join()
-  end
-  res.uniq[n]
-end
+az=[*?A..?Z]
+twos = az.repeated_permutation(2).to_a.map{|x| x.join()}
+threes = az.repeated_permutation(3).to_a.map{|x| x.join()}
+res = [""]+az+twos+threes
 
-puts column_name(52)
-puts column_name(3702)
+File.foreach(ARGV.first) do |line|
+  puts res[line.to_i]
+end
