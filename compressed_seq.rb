@@ -1,16 +1,18 @@
-def compressed_seq(arr)
-  res=[];(0...arr.length).each do |i|
-    if arr[i]!=arr[i+1] 
-      count, j = 1, i
-      until arr[j-1]!=arr[j]
-        count+=1 
-        j-=1
-      end
-      res << count
-      res << arr[i] 
-    end
-  end
-  res.join(" ")
-end
+File.foreach(ARGV[0]) do |line|
+  arr = line.split(' ').map(&:to_i)
 
-puts compressed_seq([1,1,3,3,3,2,2,2,2,14,14,14,11,11,11,2])
+  res = []
+  i = 0
+  while i < arr.length
+    count = 1
+    n = arr[i]
+    until arr[i]!=arr[i+1]
+      count+=1   
+      i+=1
+    end
+    i+=1
+    res += [count, n]
+  end
+
+  puts res.join(" ") 
+end
