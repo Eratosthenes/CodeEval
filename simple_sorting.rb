@@ -1,3 +1,8 @@
 File.foreach(ARGV.first) do |line|
-  puts line.chomp.split(" ").map{|x| x.to_f}.sort.to_s.gsub(/[\[\]]/,"")
+  sorted = line.chomp.split(" ").map(&:to_f).sort
+  res = []
+  sorted.each do |n|
+    res << '%.3f'%n
+  end
+  puts res.join(" ")
 end
