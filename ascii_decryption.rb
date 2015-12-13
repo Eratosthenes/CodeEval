@@ -1,10 +1,8 @@
 #process files
+require 'open-uri'
+dict_words = open('http://eratosthenes.github.io/dict_words/'){|f| f.read}.split(" ")
+#dict_words = File.readlines('/usr/share/dict/words').map{|x| x.downcase.chomp}
 content = File.readlines(ARGV[0])[0].chomp
-dict_words = ["curiouser","needs"] #dict_words = File.readlines('/usr/share/dict/words').map{|x| x.downcase.chomp}
-File.open('dict_words.txt','w') do |file|
-  file.write(dict_words)
-end
-  
 word_len, last_letter, text = content.split("|")
 word_len = word_len.strip().to_i
 last_letter = last_letter.strip()
