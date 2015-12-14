@@ -1,5 +1,6 @@
+#the capitalize function made capital letters inside the words lowercase (an unwanted effect)
 File.foreach(ARGV[0]) do |line|
-  line=line.chomp.split(' ')
-  line[0][0] = line[0][0].capitalize
-  puts line.join(' ')
+  words = line.chomp.split(' ')
+  words.each{|word| word[0] = (word[0].ord-32).chr if [*?a..?z].include?(word[0])}
+  puts words.join(' ')
 end
