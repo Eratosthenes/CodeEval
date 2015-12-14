@@ -6,11 +6,7 @@ File.foreach(ARGV[0]) do |line|
     if letter != "*"
       re += letter 
     else
-      if re_str[i-1] != "\\"
-	re += ".*" 
-      else
-	re += "*"
-      end
+      re = (re_str[i-1] != "\\") ? re + ".*" : re + "*"
     end
   end
 
