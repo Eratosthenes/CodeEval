@@ -1,3 +1,14 @@
 File.foreach(ARGV.first) do |line|
-  puts line.chomp.length <= 55 ? line.chomp : "#{line.chomp[0...40].strip}... <Read More>"
+  line = line.chomp
+  if line.length > 55
+    line = line.split(' ')
+    i=0
+    res = []
+    line.each do |word|
+      i+=word.length+1
+      res << word if i<40 || res.empty?
+    end
+    line=res.join(' ').strip()+"... <Read More>"
+  end
+  puts line
 end
