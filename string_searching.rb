@@ -10,5 +10,5 @@ File.foreach(ARGV[0]) do |line|
     end
   end
 
-  puts !text.match(/#{re}/).nil?
+  puts !!text.match(/#{re}/)
 end  
