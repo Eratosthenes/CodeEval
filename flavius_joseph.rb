@@ -5,16 +5,10 @@ File.foreach(ARGV[0]) do |line|
   ppl = [*0..n-1]
   res = []
   i = m - 1
-  until ppl.empty?
-    #puts "ppl = #{ppl}, res = #{res}, i = #{i}"
-    res << ppl[i]
-    i += m
-    if i >= ppl.length
-      i = i % ppl.length
-      ppl -= res 
-    else
-      i = i % ppl.length
-    end
+  n.times do 
+    res << ppl[i] 
+    ppl.delete_at(i)
+    i = (i-1+m)%ppl.length unless ppl.empty?
   end
-  puts res.reject{|x| x.nil?}.join(' ')
+  puts res.join(' ')
 end
